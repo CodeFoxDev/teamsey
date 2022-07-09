@@ -1,0 +1,327 @@
+.dashboard-cover {
+    position: relative;
+    width: calc(100vw - var(--projects-side-width) - 40px - 2rem);
+    height: calc(var(--projects-side-width) - 2rem);
+    padding: 1rem;
+}
+
+.dashboard-cover * {
+    font-family: var(--font-comf);
+}
+
+.dashboard-cover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top right, var(--blue-light), var(--blue-dark));
+    opacity: .05;
+    border-radius: 1rem;
+    z-index: 0;
+}
+
+.dashboard-cover h1 {
+    position: absolute;
+    padding-left: 1rem;
+}
+
+.dashboard-cover-options {
+    color: var(--text-color);
+    text-decoration: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.projects-side-left {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: var(--projects-side-width);
+    min-height: calc(100vh - var(--nav-height));
+    background: var(--nav-bg);
+    transition: all .3s ease;
+    overflow-y: auto;
+}
+
+.projects-side-left * {
+    font-family: var(--font-comf);
+}
+
+.title {
+    padding: 20px;
+    padding-bottom: 0;
+    font-size: 1rem;
+}
+
+.title>* {
+    display: inline-block;
+}
+
+.title>div {
+    float: right;
+    margin-top: 3px;
+    padding: 3px;
+    background-color: var(--gray4);
+    border-radius: 5px;
+    width: 1rem;
+    height: 1rem;
+}
+
+.title>div>i {
+    width: 16px;
+    transition: transform .3s ease-in-out;
+}
+
+.title>div>i:hover {
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+
+.projects-side-left>div:not(.title) {
+    padding: 20px;
+}
+
+.projects-side-left a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.todoItem {
+    display: block;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 20px;
+
+    transition: transform .3s ease;
+}
+
+.todoItem:hover {
+    transform: translateY(-.5rem);
+}
+
+.todoItem>div {
+    width: calc(var(--projects-side-width) - 80px);
+    height: calc((var(--projects-side-width) - 80px) / 3 * 2);
+    padding: 20px;
+    background-image: linear-gradient(to top right, var(--gray5), var(--gray4));
+    background-size: 200% 200%;
+    background-position: 30% 0;
+    border-radius: 10px;
+}
+
+.todoItem>div>h1 {
+    font-size: 1.3rem;
+}
+
+.top {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    width: calc(100% - 40px);
+    font-size: .75rem;
+}
+
+.balkje {
+    display: inline-block;
+    width: 50px;
+    height: 8px;
+    background-image: linear-gradient(to top right, var(--blue-light), var(--blue-dark));
+    border-radius: 50px;
+    margin-bottom: 3px;
+}
+
+.top>i {
+    margin-left: auto;
+}
+
+.top>p {
+    margin: 0;
+    margin-left: 5px;
+}
+
+.smol-middle {
+    height: 45%;
+}
+
+.big-middle {
+    height: 55%;
+}
+
+.align-bottom {
+    padding-top: calc(27% - 1.3rem);
+    margin: 0;
+}
+
+.bottom {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    border-top: var(--gray3) solid 1px;
+    padding-top: 5px;
+}
+
+.bottom>div {
+    width: fit-content;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.bottom>div * {
+    display: inline-block;
+    font-size: .9rem;
+}
+
+.date {
+    font-size: .8rem;
+    color: var(--gray4);
+}
+
+.balkje.red {
+    background-image: linear-gradient(to top right, var(--red-light), var(--red-dark));
+}
+
+.balkje.orange {
+    background-image: linear-gradient(to top right, var(--orange-light), var(--orange-dark));
+}
+
+.balkje.green {
+    background-image: linear-gradient(to top right, var(--green-light), var(--green-dark));
+}
+
+.balkje.purple {
+    background-image: linear-gradient(to top right, var(--purple-light), var(--purple-dark));
+}
+
+.balkje.pink {
+    background-image: linear-gradient(to top right, var(--pink-light), var(--pink-dark));
+}
+
+/* add todo item */
+
+.fade {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: 50%;
+}
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.section-wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.section-wrapper .header-wrapper * {
+    display: inline-block;
+}
+
+.section-wrapper .header-wrapper .right {
+    float: right;
+    margin-left: auto;
+}
+
+.activity {
+    position: relative;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.activity * {
+    display: inline-block;
+}
+
+.activity>*:not(.bg-cover) {
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+.activity .bg-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top right, var(--blue-light), var(--blue-dark));
+    opacity: .05;
+    border-radius: 1rem;
+    z-index: 0;
+}
+
+.activity img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.activity .right {
+    margin-left: auto;
+    float: right;
+}
+
+.activity i {
+    padding-inline: .75rem;
+}
+
+.projects-label {
+    display: block;
+    position: relative;
+    top: 2rem;
+    left: -1rem;
+    padding: 1rem 1rem 1rem 2rem;
+    background-color: var(--nav-bg);
+    border-radius: 15px;
+    width: fit-content;
+
+    transform: translate(-5rem);
+    transition: transform .3s ease;
+}
+
+@media screen and (max-width: 870px) {
+    .dashboard-cover {
+        width: calc(100vw - 40px - 2rem);
+    }
+
+    .projects-side-left {
+        transform: translate(-360px);
+    }
+
+    #projects-side-switch:checked~nav .projects-side-left {
+        transform: translate(0);
+    }
+
+    #projects-side-switch:checked~nav .projects-label {
+        transform: translate(-5rem);
+    }
+
+    #sidebar-switch:checked~nav .projects-label,
+    #msg-sidebar-switch:checked~nav .projects-label,
+    #acc-sidebar-switch:checked~nav .projects-label {
+        transform: translate(-5rem);
+    }
+
+    .projects-label {
+        transform: translate(0);
+    }
+
+    main {
+        padding-left: 1rem !important;
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/static/css/dashboard.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+	<script src="/static/js/main.js" defer></script>
+	<script src="https://kit.fontawesome.com/ae665bfb2e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<input class="absolute-hidden" type="checkbox" name="sidebar-switch" id="sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="msg-sidebar-switch" id="msg-sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="acc-sidebar-switch" id="acc-sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="login-overlay-switch" id="login-overlay-switch">
+	<input class="absolute-hidden" type="checkbox" name="projects-side-switch" id="projects-side-switch">
+	<nav class="sticky-top">
+		<!-- # Navbar icons -->
+		<div class="top flex-center">
+			<div class="left item flex-center">
+				<a href="/" class="logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 209" class="logo">
+						<polygon points="45,20 45,90 20,125 115,200 208,125 183,90 183,20 140,80 88,80" fill="none"
+							stroke-width="14" />
+						<path d="M124,100 L104,170" stroke-width="6" stroke-linecap="round" />
+						<path d="M135,110 L160,130 L135,150" fill="none" stroke-width="6" stroke-linecap="round"
+							stroke-linejoin="round" />
+						<path d="M93,110 L68,130 L93, 150" fill="none" stroke-width="6" stroke-linecap="round"
+							stroke-linejoin="round" />
+					</svg>
+				</a>
+				<div class="column">
+					<h5>Teamsey</h5>
+					<p id="path-display">/</p>
+					<script>document.getElementById("path-display").innerHTML = (window.location.pathname == '/') ? "/home" : window.location.pathname;</script>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="login-overlay sticky-center flex-center-column">
+		<h1 class="border-bottom" style="width: 75%; text-align: center;">Login</h1>
+		<form action="/login" method="post" class="flex-center-column form-wrapper">
+			<div class="form-input-wrapper">
+				<label for="email">Email</label>
+				<input class="form-input" type="text" name="email" id="email" placeholder="email">
+			</div>
+			<div class="form-input-wrapper">
+				<label for="password">Password</label>
+				<input class="form-input" type="password" name="password" id="password" placeholder="password">
+			</div>
+
+			<p class="error-text"><% if(err){ %> <%= JSON.parse(err).msg %> <% } %> </p>
+			<input class="hidden" type="text" name="return-page" id="return-page">
+			<script>
+				document.querySelector('#return-page').value = window.location.href.split('#').shift();
+			</script>
+
+			<button class="form-submit" type="submit">Login</button>
+		</form>
+	</div>
+
+	<main></main>
+</body>
+
+</html>

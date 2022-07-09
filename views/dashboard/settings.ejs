@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/static/css/dashboard.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+	<script src="/static/js/main.js" defer></script>
+	<script src="https://kit.fontawesome.com/ae665bfb2e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<input class="absolute-hidden" type="checkbox" name="sidebar-switch" id="sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="msg-sidebar-switch" id="msg-sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="acc-sidebar-switch" id="acc-sidebar-switch">
+	<input class="absolute-hidden" type="checkbox" name="login-overlay-switch" id="login-overlay-switch">
+	<input class="absolute-hidden" type="checkbox" name="projects-side-switch" id="projects-side-switch">
+	<nav class="sticky-top">
+		<!-- # Navbar icons -->
+		<div class="top flex-center">
+			<div class="left item flex-center">
+				<a href="/" class="logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 209" class="logo">
+						<polygon points="45,20 45,90 20,125 115,200 208,125 183,90 183,20 140,80 88,80" fill="none"
+							stroke-width="14" />
+						<path d="M124,100 L104,170" stroke-width="6" stroke-linecap="round" />
+						<path d="M135,110 L160,130 L135,150" fill="none" stroke-width="6" stroke-linecap="round"
+							stroke-linejoin="round" />
+						<path d="M93,110 L68,130 L93, 150" fill="none" stroke-width="6" stroke-linecap="round"
+							stroke-linejoin="round" />
+					</svg>
+				</a>
+				<div class="column">
+					<h5>Teamsey</h5>
+					<p id="path-display">/</p>
+					<script>document.getElementById("path-display").innerHTML = (window.location.pathname == '/') ? "/home" : window.location.pathname;</script>
+				</div>
+			</div>
+			<div class="item">
+				<div class="search-bar">
+					<input type="text" name="search" id="search" placeholder="Search">
+				</div>
+			</div>
+			<div class="right reverse item icons">
+				<label class="pointer" for="sidebar-switch">
+					<i class="fa-solid fa-bars item-icon"></i>
+				</label>
+				<% if(user){ %>
+					<label class="pointer" for="msg-sidebar-switch">
+						<i class="fa-solid fa-bell bell new item-icon"></i>
+					</label>
+					<label class="pointer" for="acc-sidebar-switch">
+						<div class="account-item-wrapper align-items-center pointer">
+							<img src="/static/assets/user-default.png" alt="Profile picture">
+							<p><%= user.name %></p>
+							<i class="fa-solid fa-angle-down"></i>
+						</div>
+					</label>
+					<% } %>
+			</div>
+		</div>
+		<div class="side">
+			<div class="side-wrapper">
+				<h2>Menu</h2>
+				<a href="/">
+					<div class="align-items-center link-wrapper">
+						<i class="fa-solid fa-house fa-fw"></i>
+						<p>Home</p>
+					</div>
+				</a>
+				<% if(user){ %> 
+					<a href="/dashboard">
+						<div class="align-items-center link-wrapper">
+							<i class="fa-solid fa-chart-line"></i>
+							<p>Dashboard</p>
+						</div>
+					</a>
+					<a href="/dashboard/settings">
+						<div class="align-items-center link-wrapper">
+							<i class="fa-solid fa-users-gear"></i>
+							<p>Team settings</p>
+						</div>
+					</a>
+				<% } %> 
+				<h2>Profile</h2>
+				<% if(user) { %>
+					<a href="/profile">
+						<div class="align-items-center link-wrapper">
+							<i class="fa-solid fa-user fa-fw"></i>
+							<p>Profile</p>
+						</div>
+					</a>
+					<a href="/profile/settings">
+						<div class="align-items-center link-wrapper">
+							<i class="fa-solid fa-gears fa-fw"></i>
+							<p>Preferences</p>
+						</div>
+					</a>
+					<a href="/logout">
+						<div class="align-items-center link-wrapper">
+							<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							<p>Logout</p>
+						</div>
+					</a>
+					<% } else { %>
+						<a href="/login">
+							<div class="align-items-center link-wrapper">
+								<i class="fa-solid fa-arrow-right-to-bracket"></i>
+								<p>Login</p>
+							</div>
+						</a>
+						<% } %>
+			</div>
+		</div>
+		<div class="msg-side">
+			<div class="side-wrapper">
+				<h3>Zero new messages!</h3>
+			</div>
+		</div>
+		<div class="acc-side">
+			<div class="side-wrapper">
+				<a href="/profile">
+					<div class="align-items-center profile-wrapper-1">
+						<img class="profile" src="/static/assets/user-default.png" alt="Account profile">
+						<div class="column">
+							<h2><%= user.name %></h2>
+							<p><%= user.email %></p>
+						</div>
+					</div>
+				</a>
+				<div class="align-items-center profile-wrapper-3 column">
+					<p><%= user.bio %></p>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<main style="padding-left: 1rem;">
+    <a class="link" href="/dashboard"><- dashboard</a>
+    <h1 class="fw-700"><%= teamData.name %> </h1>
+    <hr>
+
+    <h2 class="fw-700">Appearance</h2>
+    <form action="/dashboard/settings" method="post">
+      <div class="align-items-center form-input-wrapper">
+        <label>Team name</label>
+        <input id="name" name="name" type="text" placeholder="Name" value="<%= teamData.name %>">
+      </div>
+      <div class="align-items-center form-input-wrapper">
+        <label>Team description</label>
+        <textarea id="description" name="description" placeholder="Description"><%= teamData.description %></textarea>
+      </div>
+      <input class="absolute-hidden" type="text" name="user_id" id="user_id" value="<%= user.id %>">
+      <input class="absolute-hidden" type="text" name="team_id" id="team_id" value="<%= teamData.id %>">
+      <button class="button outline round gray" type="submit"><span>Update</span></button>
+    </form>
+		<hr>
+
+		<h2 class="fw-700">Users</h2>
+		<% let membersAmount = teamData.members.length %> 
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Profile</th>
+				<th></th>
+			</tr>
+			<% for( let i = 0; i < membersAmount; i++ ) { %>
+				<tr>
+					<td><%= teamData.members[i].name %></td>
+					<td><%= teamData.members[i].email %></td>
+					<td><%= teamData.members[i].picture %></td>
+					<td>
+						<form action="/dashboard/settings/users/delete/<%= teamData.members[i].id %>" method="post">
+							<label for="delete-<%= teamData.members[i].id %>">
+								<i class="fa-solid fa-trash fa-fw"></i>
+							</label>
+							<button class="absolute-hidden" id="delete-<%= teamData.members[i].id %>" type="submit"></button>
+						</form>
+					</td>
+				</tr>
+			<% } %>
+		</table>
+	</main>
+</body>
+
+</html>
